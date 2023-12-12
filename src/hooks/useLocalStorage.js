@@ -18,7 +18,7 @@ function useLocalStorage (itemName, initialValue) {
       //If there's something inside, parse it for javascript to use it on website
       parsedItem = JSON.parse(localStorageItem);
     }
-  }
+  })
 
 
 // Function to save state changes on localStorage
