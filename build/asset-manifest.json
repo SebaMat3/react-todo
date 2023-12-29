@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/Users/sebamate/dev/react/react-todo/build/static/css/main.7a7b93ec.css",
-    "main.js": "/Users/sebamate/dev/react/react-todo/build/static/js/main.b18cb3f4.js",
-    "index.html": "/Users/sebamate/dev/react/react-todo/build/index.html",
-    "main.7a7b93ec.css.map": "/Users/sebamate/dev/react/react-todo/build/static/css/main.7a7b93ec.css.map",
-    "main.b18cb3f4.js.map": "/Users/sebamate/dev/react/react-todo/build/static/js/main.b18cb3f4.js.map"
+    "main.css": "/react-todo/static/css/main.7a7b93ec.css",
+    "main.js": "/react-todo/static/js/main.b18cb3f4.js",
+    "index.html": "/react-todo/index.html",
+    "main.7a7b93ec.css.map": "/react-todo/static/css/main.7a7b93ec.css.map",
+    "main.b18cb3f4.js.map": "/react-todo/static/js/main.b18cb3f4.js.map"
   },
   "entrypoints": [
     "static/css/main.7a7b93ec.css",
