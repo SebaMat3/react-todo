@@ -1,16 +1,17 @@
 import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
-const TodoContext = React.createContext()
 
-function TodoProvider({ children }) {
+function useTodos() {
   //All the app logic goes here
   const {
     item: todos,
     storeItem: storeTodos,
     error,
     loading,
+    synchronizeItem: synchronizeTodos,
   } = useLocalStorage('TODOS_V1', []);
+
   const [searchValue, setSearchValue] = React.useState('');
   const [openModal, setOpenModal] = React.useState(false);
 
@@ -20,21 +21,25 @@ function TodoProvider({ children }) {
   ).length;
   const totalTodos = todos.length;
 
+
   // Logic to search for tasks
-  const searchedTodos = todos.filter(
-    (todo) => {
-      //return todo.text.toLowerCase().includes(searchValue.toLowerCase())
-      const lowerTodo = todo.text.toLocaleLowerCase();
-      const lowerSearch = searchValue.toLocaleLowerCase();
-      return lowerTodo.includes(lowerSearch)
-    }
-  );
+  let searchedTodos = [];
+
+  if (!searchValue.length >= 1) {
+    searchedTodos = todos;
+  } else {
+    searchedTodos = todos.filter(todo => {
+      const todoText = todo.text.toLowerCase();
+      const searchText = searchValue.toLowerCase();
+      return todoText.includes(searchText);
+    });
+  }
 
   const addTodo = (text) => {
     const newTodos = [...todos];
     newTodos.push({
-      text,
       completed: false,
+      text,
     });
     storeTodos(newTodos);
   };
@@ -59,8 +64,7 @@ function TodoProvider({ children }) {
     storeTodos(newTodos);
   }
 
-  return (
-    <TodoContext.Provider value={{
+   return {
       loading,
       error,
       completedTodos,
@@ -72,11 +76,9 @@ function TodoProvider({ children }) {
       completeTodo,
       deleteTodo,
       openModal,
-      setOpenModal
-    }}>
-      {children}
-    </TodoContext.Provider>
-  );
+      setOpenModal,
+      synchronizeTodos
+    };
 }
 
-export { TodoContext, TodoProvider };
+export { useTodos };

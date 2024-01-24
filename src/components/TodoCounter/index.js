@@ -14,13 +14,9 @@ Lets rather import a stylesheet file, and go for the cleaner way*/
 
 import './TodoCounter.css';
 import React from 'react';
-import { TodoContext } from '../TodoContext'
 
-function TodoCounter() {
-       const {
-        completedTodos,
-        totalTodos,
-       } = React.useContext(TodoContext)
+function TodoCounter({completedTodos, totalTodos}) {
+
     return (     
             <h1 className='TodoCounter'>
             {/* react allows us to directly give a styles object to the style attribute a well:
