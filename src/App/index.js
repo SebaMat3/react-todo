@@ -12,7 +12,7 @@ import { EmptyTodos } from '../components/EmptyTodos/index.js';
 import { Modal } from '../components/Modal/index.js';
 import { TodoForm } from '../components/TodoForm/index.js'
 import TodoHeader from '../components/Header/index.js';
-import { ChangeAlertWithStorage } from '../components/ChangeAlert/index.js';
+import { ChangeAlert } from '../components/ChangeAlert/index.js';
 
 function App() {
   const {
@@ -87,7 +87,7 @@ function App() {
       <CreateTodoButton
         setOpenModal={setOpenModal} />
         
-      <ChangeAlertWithStorage
+      <ChangeAlert
         synchronize={synchronizeTodos}
       />
 

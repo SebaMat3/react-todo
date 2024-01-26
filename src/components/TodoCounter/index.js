@@ -15,11 +15,12 @@ Lets rather import a stylesheet file, and go for the cleaner way*/
 import './TodoCounter.css';
 import React from 'react';
 
-function TodoCounter({completedTodos, totalTodos}) {
+function TodoCounter({ completedTodos, totalTodos }) {
 
-    return (     
+    return (
+        <>
             <h1 className='TodoCounter'>
-            {/* react allows us to directly give a styles object to the style attribute a well:
+                {/* react allows us to directly give a styles object to the style attribute a well:
             <h1 style={{
                 backgroundColor: 'red',
                 fontSize : 24 || '24px'
@@ -29,7 +30,8 @@ function TodoCounter({completedTodos, totalTodos}) {
             </h1> */}
                 You've completed <span>{completedTodos}</span> out of <span>{totalTodos}</span> TODOs!.
             </h1>
-    ); 
+        </>
+    );
 }
 
 

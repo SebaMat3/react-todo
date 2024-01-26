@@ -1,0 +1,44 @@
+
+.ChangeAlert-bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background: #1e1e1f50;
+}
+
+.ChangeAlert-container{
+	position: fixed; 
+	bottom: -10px; 
+	left: -10px; 
+	right: -10px; 
+	padding: 34px; 
+	background-color: #1e1e1f; 
+	color: #f2f4f5; 
+	z-index: 2; 
+	text-align: center; 
+	font-size: 20px; 
+
+}
+
+.TodoForm-button{
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    color: #202329;
+    font-weight: 400;
+    width:40dvh;
+    height:3em;
+    border-radius: 2px;
+    border: none;
+/*     font-family: 'Montserrat'; */
+    margin-top: 16px; 
+	margin-bottom: 16px; 
+
+}
+.TodoForm-button--add{
+    background: #61dafa;
+    box-shadow: 0px 5px 25px rgba(97, green218, blue250, alpha0.5);
+}
