@@ -1,3 +1,5 @@
+//src/components/ChangeAlert/index.js
+import React from "react";
 import { useStorageListener } from "./useStorageListener.js"
 import './ChangeAlert.css';
 

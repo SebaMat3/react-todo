@@ -6,5 +6,6 @@ import App from './App';
 
 //Creating the root element
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 //Rendering the base component into the root
 root.render(<App />);

@@ -1,3 +1,4 @@
+//src/App/useTodos.js
 import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
@@ -6,23 +7,22 @@ function useTodos() {
   //All the app logic goes here
   const {
     item: todos,
-    storeItem: storeTodos,
+    saveItem: storeTodos,
+    synchronizeItem: synchronizeTodos,
     error,
     loading,
-    synchronizeItem: synchronizeTodos,
   } = useLocalStorage('TODOS_V1', []);
 
   const [searchValue, setSearchValue] = React.useState('');
   const [openModal, setOpenModal] = React.useState(false);
 
-  //DERIVATED STATE: Number of completed todos, using double negation !! to ensure a boolean expression 
+  // These are derived states - they are computed from the main todos state
   const completedTodos = todos.filter(
     todo => !!todo.completed
   ).length;
   const totalTodos = todos.length;
 
-
-  // Logic to search for tasks
+  // This is also derived state - computed from todos and searchValue
   let searchedTodos = [];
 
   if (!searchValue.length >= 1) {
@@ -54,7 +54,7 @@ function useTodos() {
     storeTodos(newTodos);
   };
 
-  // "Delete todo" functionality, to provide to todoItems, almost the same as achieveTodos
+  // "Delete Todo" functionality, to provide to todoItems, almost the same as achieveTodos
   const deleteTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(

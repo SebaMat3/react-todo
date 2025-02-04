@@ -1,3 +1,4 @@
+//src/App/index.js
 import './App.css';
 import React from 'react';
 import { useTodos } from './useTodos.js';
@@ -12,7 +13,7 @@ import { EmptyTodos } from '../components/EmptyTodos/index.js';
 import { Modal } from '../components/Modal/index.js';
 import { TodoForm } from '../components/TodoForm/index.js'
 import TodoHeader from '../components/Header/index.js';
-import { ChangeAlert } from '../components/ChangeAlert/index.js';
+import { ChangeAlert } from '../components/ChangeAlert';
 
 function App() {
   const {
@@ -45,6 +46,7 @@ function App() {
 
       <TodoList
         error={error}
+         // Render props - functions passed as props that return React elements
         onError={error => <TodosError error={error} />}
         loading={loading}
         onLoading={() => <TodosLoading />}
@@ -54,16 +56,8 @@ function App() {
         onEmptyTodos={() => <EmptyTodos />}
         onEmptySearchResults={(searchText) => <p>No results for: {searchText}</p>}
       >
-{/*         render={todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          /> 
-        )} */}
         {todo => (
+          //Render prop
           <TodoItem
             key={todo.text}
             text={todo.text}

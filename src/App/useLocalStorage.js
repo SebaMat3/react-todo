@@ -1,12 +1,28 @@
+//src/App/useLocalStorage.js
 import React from "react";
 
-// Custom hook: everything localStorage related
 function useLocalStorage(itemName, initialValue) {
-  const [synchronizedItems, setSynchronizedItems] = React.useState(true);
-  const [item, setItem] = React.useState(initialValue);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(false);
 
+  const [state, dispatch] = React.useReducer(reducer, initialState({ initialValue }));
+
+  const {
+    synchronizedItems,
+    item,
+    loading,
+    error,
+  } = state;
+
+  /*   const [synchronizedItems, setSynchronizedItems] = React.useState(true);
+    const [item, setItem] = React.useState(initialValue);
+    const [loading, setLoading] = React.useState(true);
+    const [error, setError] = React.useState(false);
+   */
+
+  // ACTION CREATORS
+  const onError = (error) => dispatch({ type: actionTypes.error, payload: error });
+  const onSuccess = (item) => dispatch({ type: actionTypes.success, payload: item });
+  const onSave = (item) => dispatch({ type: actionTypes.save, payload: item });
+  const onSynchronize = () => dispatch({ type: actionTypes.synchronize });
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -24,47 +40,92 @@ function useLocalStorage(itemName, initialValue) {
           //If there's something inside, parse it for javascript to use it on website
           parsedItem = JSON.parse(localStorageItem);
         }
-        
-        setItem(parsedItem);
-        setLoading(false);
-        setSynchronizedItems(true)
+
+        onSuccess(parsedItem);
+        /*         setItem(parsedItem);
+                setLoading(false);
+                setSynchronizedItems(true) */
       } catch (error) {
-        //setLoading(false)
-        setError(true)
+        onError(error);
+        //setError(true)
       }
-    }, 3000);
+    }, 2000);
   }, [synchronizedItems]);
+
+
+  // Function to save state changes on localStorage
+  const saveItem = (newItem) => {
+    try {
+      const stringifiedItem = JSON.stringify(newItem);
+      localStorage.setItem(itemName, stringifiedItem);
+      onSave(newItem);
+      //setItem(newItem);
+    } catch (error) {
+      onError(error);
+      //dispatch({types: actionTypes.error, payload: error})
+      //setError(error);
+    }
+  };
 
   //Function to start synchronizing TODOs on different windows
   const synchronizeItem = () => {
+    onSynchronize();
+    /*  
     setLoading(true)
-    setSynchronizedItems(false)
-  }
-
-  // Function to save state changes on localStorage
-  const storeItem = (newItem) => {
-    localStorage.setItem(itemName, JSON.stringify(newItem));
-    setItem(newItem)
+    setSynchronizedItems(false) */
   };
+
+
 
   return {
     item,
-    storeItem,
+    saveItem,
     loading,
     error,
     synchronizeItem
   };
 }
 
+const initialState = ({ initialValue }) => ({
+  synchronizedItems: true,
+  error: false,
+  loading: true,
+  item: initialValue,
+});
+
+const actionTypes = {
+  error: 'ERROR',
+  success: 'SUCCESS',
+  save: 'SAVE',
+  synchronize: 'SYNCHRONIZE'
+};
+
+const reducerObject = (state, payload) => ({
+  [actionTypes.error]: {
+    ...state,
+    error: true,
+  },
+  [actionTypes.success]: {
+    ...state,
+    error: false,
+    loading: false,
+    synchronizedItems: true,
+    item: payload,
+  },
+  [actionTypes.save]: {
+    ...state,
+    item: payload,
+  },
+  [actionTypes.synchronize]: {
+    ...state,
+    synchronizedItems: false,
+    loading: true,
+  },
+
+})
+
+const reducer = (state, action) => {
+  return reducerObject(state, action.payload)[action.type] || state;
+}
+
 export { useLocalStorage };
-
-
-// For every element of the array we will render a ToDoItem
-/* const defaultTodos = [
-  { text: 'Siesta', completed: true }, 
-  { text: 'Tomar el Curso de Intro a React.js', completed: false },
-  { text: 'Armar bici', completed:false }, 
-  { text:'Mueble Tia Mariana', completed: false }
-];
-localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
-localStorage.removeItem(itemName); */

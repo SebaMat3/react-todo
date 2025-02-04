@@ -15,11 +15,11 @@ Lets rather import a stylesheet file, and go for the cleaner way*/
 import './TodoCounter.css';
 import React from 'react';
 
-function TodoCounter({ completedTodos, totalTodos }) {
+function TodoCounter({ completedTodos, totalTodos, loading }) {
 
     return (
         <>
-            <h1 className='TodoCounter'>
+            <h1 className={`TodoCounter ${!!loading && "TodoCounter--loading" }`}>
                 {/* react allows us to directly give a styles object to the style attribute a well:
             <h1 style={{
                 backgroundColor: 'red',
