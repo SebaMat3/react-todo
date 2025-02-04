@@ -1,5 +1,6 @@
-# Follow-up from Platzi react-intro course
-https://platzi.com/reactjs
+# My version of react-intro course - Platzi
+
+- Link to course: https://platzi.com/reactjs
 
 ## Getting Started with Create React App
 
