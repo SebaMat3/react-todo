@@ -64,20 +64,40 @@ function useTodos() {
     storeTodos(newTodos);
   }
 
+  const states = {
+    error,
+    loading,
+    searchedTodos,
+    totalTodos,
+    completedTodos,
+    openModal,
+    searchValue,
+  }
+
+  const stateUpdaters = {
+    completeTodo,
+    setOpenModal,
+    addTodo,
+    deleteTodo,
+    setSearchValue,
+    synchronizeTodos
+  }
+
    return {
-      loading,
+    states, stateUpdaters
+/*       loading,
       error,
       completedTodos,
       totalTodos,
       searchValue,
-      setSearchValue,
       searchedTodos,
+      openModal,
+      setSearchValue,
       addTodo,
       completeTodo,
       deleteTodo,
-      openModal,
       setOpenModal,
-      synchronizeTodos
+      synchronizeTodos */
     };
 }
 

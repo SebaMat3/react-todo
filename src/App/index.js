@@ -17,21 +17,31 @@ import { ChangeAlert } from '../components/ChangeAlert';
 
 function App() {
   const {
-    loading,
+    states,
+    stateUpdaters
+  } = useTodos()
+  
+  const {
     error,
+    loading,
     searchedTodos,
-    completeTodo,
-    deleteTodo,
-    openModal,
-    setOpenModal,
-    completedTodos,
     totalTodos,
+    completedTodos,
+    openModal,
     searchValue,
-    setSearchValue,
+  } = states;
+
+  const {
+    completeTodo,
+    setOpenModal,
     addTodo,
+    deleteTodo,
+    setSearchValue,
     synchronizeTodos
-  } = useTodos() /* React.useContext(TodoContext); */
+  } = stateUpdaters;
+
   return (
+
     <>
       <TodoHeader loading={loading}>
         <TodoCounter 
