@@ -1,8 +1,10 @@
+//src/index.js
+
 /* Main file where we import and render components */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import {App} from './routes/App';
 
 //Creating the root element
 const root = ReactDOM.createRoot(document.getElementById('root'));

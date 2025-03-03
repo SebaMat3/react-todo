@@ -1,21 +1,21 @@
-//src/App/index.js
-import './App.css';
+//src/routes/home/HomePage.jsx
+import '../App.css';
 import React from 'react';
-import { useTodos } from './useTodos.js';
-import { TodoSearch } from '../components/TodoSearch/index.js';
-import { TodoList } from '../components/TodoList/index.js';
-import { TodoItem } from '../components/TodoItem/index.js';
-import { CreateTodoButton } from '../components/CreateTodoButton/index.js';
-import { TodoCounter } from '../components/TodoCounter/index.js';
-import { TodosError } from '../components/TodosError/index.js';
-import { TodosLoading } from '../components/TodosLoading/index.js';
-import { EmptyTodos } from '../components/EmptyTodos/index.js';
-import { Modal } from '../components/Modal/index.js';
-import { TodoForm } from '../components/TodoForm/index.js'
-import TodoHeader from '../components/Header/index.js';
-import { ChangeAlert } from '../components/ChangeAlert';
+import { useTodos } from '../useTodos.js';
+import { TodoSearch } from '../../ui/TodoSearch/index.js';
+import { TodoList } from '../../ui/TodoList/index.js';
+import { TodoItem } from '../../ui/TodoItem/index.js';
+import { CreateTodoButton } from '../../ui/CreateTodoButton/index.js';
+import { TodoCounter } from '../../ui/TodoCounter/index.js';
+import { TodosError } from '../../ui/TodosError/index.js';
+import { TodosLoading } from '../../ui/TodosLoading/index.js';
+import { EmptyTodos } from '../../ui/EmptyTodos/index.js';
+import { Modal } from '../../ui/Modal/index.js';
+import { TodoForm } from '../../ui/TodoForm/index.js'
+import TodoHeader from '../../ui/Header/index.js';
+import { ChangeAlert } from '../../ui/ChangeAlert/index.js';
 
-function App() {
+function HomePage() {
   const {
     states,
     stateUpdaters
@@ -99,4 +99,4 @@ function App() {
   );
 }
 
-export default App;
+export {HomePage};
