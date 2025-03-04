@@ -1,6 +1,9 @@
+//src/ui/TodoItem/index.js
+
 import './TodoItem.css';
 import {DeleteIcon} from '../TodoIcon/DeleteIcon.js'
 import {CompleteIcon} from '../TodoIcon/CompleteIcon.js'
+import { EditIcon } from '../TodoIcon/EditIcon.js';
 
 function TodoItem(props) {
   return (
@@ -13,7 +16,9 @@ function TodoItem(props) {
       <p className={`TodoItem-p ${props.completed && "TodoItem-p--complete"}`}>
         {props.text}
       </p>
-
+      <EditIcon 
+        onEdit={props.onEdit}
+      />
       <DeleteIcon
         onDelete={props.onDelete}
       />
@@ -21,8 +26,4 @@ function TodoItem(props) {
   );
 }
 
-/* We are avoiding default export, to minimize misleading names, specially on bigger projects; 
-as this way of exporting won't "care" what name you choose for it.
-export default TodoItem; */
 export { TodoItem };
-// Instead, explicit export ensures the need to type the specific name
