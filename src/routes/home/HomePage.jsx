@@ -1,6 +1,7 @@
 //src/routes/home/HomePage.jsx
-import '../App.css';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../App.css';
 import { useTodos } from '../useTodos.js';
 import { TodoSearch } from '../../ui/TodoSearch/index.js';
 import { TodoList } from '../../ui/TodoList/index.js';
@@ -72,9 +73,9 @@ function HomePage() {
             key={todo.id}
             text={todo.text}
             completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
+            onComplete={() => completeTodo(todo.id)}
             onEdit={() => console.log('Editing')}
-            onDelete={() => deleteTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.id)}
           /> 
         )}
       </TodoList>

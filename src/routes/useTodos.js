@@ -33,20 +33,10 @@ function useTodos() {
       return todoText.includes(searchText);
     });
   }
-
-  const newId = (todoList) => {
-    if (!todoList || todoList.length === 0) {
-      return 1;
-    }
-    
-    const idList = todoList.map(todo => todo.id);
-    const maxID = Math.max(...idList);
-    return maxID + 1;
-    
-  };
-
+  
   const addTodo = (text) => {
-    const id = newId(todoList);
+    const idList = todos.map(todo => todo.id);
+    let id = newId(idList);
     const newTodos = [...todos];
     newTodos.push({
       completed: false,
@@ -55,26 +45,21 @@ function useTodos() {
     });
     storeTodos(newTodos);
   };
-
-
+  
   const completeTodo = (id) => {
+    const todoIndex = todos.findIndex(todo => todo.id === id);
     const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex(
-      (todo) => todo.id === id
-    );
     newTodos[todoIndex].completed = true;
     storeTodos(newTodos);
   };
 
   const deleteTodo = (id) => {
+    const todoIndex = todos.findIndex(todo => todo.id === id);
     const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex(
-      (todo) => todo.id === id
-    );
     newTodos.splice(todoIndex, 1);
     storeTodos(newTodos);
-  }
-
+  };
+  
   const states = {
     error,
     loading,
@@ -84,7 +69,7 @@ function useTodos() {
     openModal,
     searchValue,
   }
-
+  
   const stateUpdaters = {
     completeTodo,
     setOpenModal,
@@ -93,23 +78,40 @@ function useTodos() {
     setSearchValue,
     synchronizeTodos
   }
-
-   return {
+  
+  return {
     states, stateUpdaters
-/*       loading,
-      error,
-      completedTodos,
-      totalTodos,
-      searchValue,
-      searchedTodos,
-      openModal,
-      setSearchValue,
-      addTodo,
-      completeTodo,
-      deleteTodo,
-      setOpenModal,
-      synchronizeTodos */
-    };
+    /*       loading,
+    error,
+    completedTodos,
+    totalTodos,
+    searchValue,
+    searchedTodos,
+    openModal,
+    setSearchValue,
+    addTodo,
+    completeTodo,
+    deleteTodo,
+    setOpenModal,
+    synchronizeTodos */
+  };
 }
+
+
+/* super simple Date based ID generator
+function newTodoId() {
+  return Date.now(); //  Unrepeated number of mililiseconds: 1668393426376
+} */
+
+const newId = (todoList) => {
+  if (!todoList || todoList.length === 0) {
+    return 1;
+  }
+  
+  const idList = todoList.map(todo => todo.id);
+  const maxID = Math.max(...idList);
+  return maxID + 1;
+  
+};
 
 export { useTodos };
