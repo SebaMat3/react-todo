@@ -1,17 +1,16 @@
-//src/App/useTodos.js
+//src/routes/useTodos.js
 import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
 
 function useTodos() {
-  //All the app logic goes here
   const {
     item: todos,
     saveItem: storeTodos,
     synchronizeItem: synchronizeTodos,
     error,
     loading,
-  } = useLocalStorage('TODOS_V1', []);
+  } = useLocalStorage('TODOS_V2', []);
 
   const [searchValue, setSearchValue] = React.useState('');
   const [openModal, setOpenModal] = React.useState(false);
@@ -35,30 +34,42 @@ function useTodos() {
     });
   }
 
+  const newId = (todoList) => {
+    if (!todoList || todoList.length === 0) {
+      return 1;
+    }
+    
+    const idList = todoList.map(todo => todo.id);
+    const maxID = Math.max(...idList);
+    return maxID + 1;
+    
+  };
+
   const addTodo = (text) => {
+    const id = newId(todoList);
     const newTodos = [...todos];
     newTodos.push({
       completed: false,
       text,
+      id
     });
     storeTodos(newTodos);
   };
 
-  // "Complete todo" functionality, to provide to todoItems 
-  const completeTodo = (text) => {
+
+  const completeTodo = (id) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
-      (todo) => todo.text === text
+      (todo) => todo.id === id
     );
     newTodos[todoIndex].completed = true;
     storeTodos(newTodos);
   };
 
-  // "Delete Todo" functionality, to provide to todoItems, almost the same as achieveTodos
-  const deleteTodo = (text) => {
+  const deleteTodo = (id) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
-      (todo) => todo.text === text
+      (todo) => todo.id === id
     );
     newTodos.splice(todoIndex, 1);
     storeTodos(newTodos);
