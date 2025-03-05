@@ -11,16 +11,15 @@ import { TodoCounter } from '../../ui/TodoCounter/index.js';
 import { TodosError } from '../../ui/TodosError/index.js';
 import { TodosLoading } from '../../ui/TodosLoading/index.js';
 import { EmptyTodos } from '../../ui/EmptyTodos/index.js';
-import { Modal } from '../../ui/Modal/index.js';
-import { TodoForm } from '../../ui/TodoForm/index.js'
+//import { Modal } from '../../ui/Modal/index.js';
+//import { TodoForm } from '../../ui/TodoForm/index.js'
 import TodoHeader from '../../ui/Header/index.js';
 import { ChangeAlert } from '../../ui/ChangeAlert/index.js';
 
 function HomePage() {
-  const {
-    states,
-    stateUpdaters
-  } = useTodos()
+  const navigate = useNavigate();
+
+  const {states, stateUpdaters} = useTodos()
   
   const {
     error,
@@ -28,13 +27,13 @@ function HomePage() {
     searchedTodos,
     totalTodos,
     completedTodos,
-    openModal,
+    //openModal,
     searchValue,
   } = states;
 
   const {
     completeTodo,
-    setOpenModal,
+    //setOpenModal,
     addTodo,
     deleteTodo,
     setSearchValue,
@@ -74,24 +73,27 @@ function HomePage() {
             text={todo.text}
             completed={todo.completed}
             onComplete={() => completeTodo(todo.id)}
-            onEdit={() => console.log('Editing')}
+            /* updated navigation action */ 
+            onEdit={() => navigate(`/edit/${todo.id}`)}
             onDelete={() => deleteTodo(todo.id)}
           /> 
         )}
       </TodoList>
 
 
-      {openModal && (
+{/*       {openModal && (
         <Modal>
           <TodoForm
             addTodo={addTodo}
             setOpenModal={setOpenModal}
           />
         </Modal>
-      )}
+      )} */}
 
       <CreateTodoButton
-        setOpenModal={setOpenModal} />
+        //setOpenModal={setOpenModal} 
+        onClick={() => navigate('/new')}
+      />
         
       <ChangeAlert
         synchronize={synchronizeTodos}

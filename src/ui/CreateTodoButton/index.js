@@ -1,18 +1,20 @@
+// src/ui/CreateTodoButton/index.js
 import './CreateTodoButton.css';
 
-
-function CreateTodoButton({ setOpenModal }) {
-  const onClickButton = () => {
+function CreateTodoButton( props ) {
+/*   const onClickButton = () => {
     setOpenModal(prevState => !prevState);
-  };
+  }; */
+
   return (
     <button
       className="CreateTodoButton"
-      onClick={onClickButton}
+      //onClick={onClickButton}
+      onClick={props.onClick}
     >
       +
     </button>
   );
 }
-//literal export 
+
 export { CreateTodoButton };

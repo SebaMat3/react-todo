@@ -1,25 +1,28 @@
-form{
+form {
     width: 90%;
     max-width: 300px;
-    background-color: #fff;
+    /* background-color: #fff; */
+    margin: 0 auto;
     padding: 33px 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-label{
+
+label {
     text-align: center;
     font-weight: bold;
     font-size: 20px;
     color: #1E1E1F;
     margin-bottom: 26px;
 }
-textarea{
+
+textarea {
     background-color: #F9fbfc;
     border: 2px solid #202329;
     border-radius: 2px;
-    box-shadow: 0px 5px 50px rgba(32, green35, blue41, alpha0.25);
+    box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.25);
     color: #1E1E1F;
     font-size: 20px;
     text-align: center;
