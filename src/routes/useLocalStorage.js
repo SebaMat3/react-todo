@@ -40,7 +40,7 @@ function useLocalStorage(itemName, initialValue) {
         onError(error);
       }
     }, 2000);
-  }, [synchronizedItems]);
+  }, [synchronizedItems, initialValue, itemName]);
 
 
   // Function to save state changes on localStorage

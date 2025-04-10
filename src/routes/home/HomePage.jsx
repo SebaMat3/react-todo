@@ -33,7 +33,7 @@ function HomePage() {
 
   const {
     completeTodo,
-    addTodo,
+    //addTodo,
     deleteTodo,
     setSearchValue,
     synchronizeTodos
