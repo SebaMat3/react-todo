@@ -12,12 +12,6 @@ function useLocalStorage(itemName, initialValue) {
     error,
   } = state;
 
-  /*   const [synchronizedItems, setSynchronizedItems] = React.useState(true);
-    const [item, setItem] = React.useState(initialValue);
-    const [loading, setLoading] = React.useState(true);
-    const [error, setError] = React.useState(false);
-   */
-
   // ACTION CREATORS
   const onError = (error) => dispatch({ type: actionTypes.error, payload: error });
   const onSuccess = (item) => dispatch({ type: actionTypes.success, payload: item });
@@ -42,12 +36,8 @@ function useLocalStorage(itemName, initialValue) {
         }
 
         onSuccess(parsedItem);
-        /*         setItem(parsedItem);
-                setLoading(false);
-                setSynchronizedItems(true) */
       } catch (error) {
         onError(error);
-        //setError(true)
       }
     }, 2000);
   }, [synchronizedItems]);
@@ -59,20 +49,14 @@ function useLocalStorage(itemName, initialValue) {
       const stringifiedItem = JSON.stringify(newItem);
       localStorage.setItem(itemName, stringifiedItem);
       onSave(newItem);
-      //setItem(newItem);
     } catch (error) {
       onError(error);
-      //dispatch({types: actionTypes.error, payload: error})
-      //setError(error);
     }
   };
 
   //Function to start synchronizing TODOs on different windows
   const synchronizeItem = () => {
     onSynchronize();
-    /*  
-    setLoading(true)
-    setSynchronizedItems(false) */
   };
 
 

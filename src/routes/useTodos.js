@@ -12,8 +12,8 @@ function useTodos() {
     loading,
   } = useLocalStorage('TODOS_V2', []);
 
+  // Rest of the logic...
   const [searchValue, setSearchValue] = React.useState('');
-  //const [openModal, setOpenModal] = React.useState(false);
 
   // These are derived states - they are computed from the main todos state
   const completedTodos = todos.filter(
@@ -34,9 +34,16 @@ function useTodos() {
     });
   }
   
+  const getTodo = (id) => {
+    const todoIndex = todos.findIndex(todo => todo.id === id);
+    return todos[todoIndex];
+  }
+
   const addTodo = (text) => {
-    const idList = todos.map(todo => todo.id);
-    let id = newId(idList);
+    //const idList = todos.map(todo => todo.id);
+    
+    let id = newId(todos);
+
     const newTodos = [...todos];
     newTodos.push({
       completed: false,
@@ -56,6 +63,7 @@ function useTodos() {
     const todoIndex = todos.findIndex(todo => todo.id === id);
     const newTodos = [...todos];
     newTodos[todoIndex].text = newText;
+
     storeTodos(newTodos);
   };
 
@@ -66,7 +74,7 @@ function useTodos() {
     storeTodos(newTodos);
   };
   
-  const states = {
+  const state = {
     error,
     loading,
     searchedTodos,
@@ -74,6 +82,7 @@ function useTodos() {
     completedTodos,
     //openModal,
     searchValue,
+    getTodo
   }
   
   const stateUpdaters = {
@@ -87,7 +96,7 @@ function useTodos() {
   }
   
   return {
-    states, stateUpdaters
+    state, stateUpdaters
     /*       loading,
     error,
     completedTodos,

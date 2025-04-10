@@ -19,7 +19,7 @@ import { ChangeAlert } from '../../ui/ChangeAlert/index.js';
 function HomePage() {
   const navigate = useNavigate();
 
-  const {states, stateUpdaters} = useTodos()
+  const {state, stateUpdaters} = useTodos()
   
   const {
     error,
@@ -29,11 +29,10 @@ function HomePage() {
     completedTodos,
     //openModal,
     searchValue,
-  } = states;
+  } = state;
 
   const {
     completeTodo,
-    //setOpenModal,
     addTodo,
     deleteTodo,
     setSearchValue,
@@ -43,6 +42,7 @@ function HomePage() {
   return (
 
     <>
+    {/* The rest of the component rendering */}
       <TodoHeader loading={loading}>
         <TodoCounter 
           completedTodos={completedTodos} 
@@ -73,8 +73,13 @@ function HomePage() {
             text={todo.text}
             completed={todo.completed}
             onComplete={() => completeTodo(todo.id)}
-            /* updated navigation action */ 
-            onEdit={() => navigate(`/edit/${todo.id}`)}
+            /* updated navigation action, sending todo object as 2nd param  */ 
+            onEdit={() => navigate(
+              `/edit/${todo.id}`, 
+              {
+                state: {todo}
+              }
+            )}
             onDelete={() => deleteTodo(todo.id)}
           /> 
         )}
