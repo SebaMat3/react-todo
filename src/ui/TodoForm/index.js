@@ -26,7 +26,8 @@ function TodoForm (props){
             <form onSubmit={onSubmit}>
                 {/* <label> Write your new TODO </label> */}
                 <label>{props.label}</label>
-                <textarea  
+                <textarea
+                    disabled={props.loading}
                     value={newTodoValue}
                     onChange={onChange} 
                     placeholder="Take Cookie out for a walk"
@@ -39,6 +40,7 @@ function TodoForm (props){
                      Cancel
                     </button>
                     <button
+                        disabled={props.loading}
                         type="submit" 
                         className="TodoForm-button TodoForm-button--add"
                         onSubmit={onSubmit}

@@ -1,5 +1,5 @@
 {
-  "name": "platzi-intro-react-base",
+  "name": "react-todo",
   "version": "0.1.0",
   "dependencies": {
     "gh-pages": "^6.1.1",

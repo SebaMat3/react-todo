@@ -30,6 +30,7 @@ function EditTodoPage() {
     return (
         <TodoForm
             label="Edit your TODO"
+            loading={loading}
             defaultTodoText={todoText}
             submitText="Confirm"
             submitEvent={(newText) => editTodo(id, newText)}
