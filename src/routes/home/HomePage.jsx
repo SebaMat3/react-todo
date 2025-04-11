@@ -1,6 +1,6 @@
 //src/routes/home/HomePage.jsx
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import '../App.css';
 import { useTodos } from '../useTodos.js';
 import { TodoSearch } from '../../ui/TodoSearch/index.js';
@@ -17,7 +17,7 @@ import TodoHeader from '../../ui/Header/index.js';
 import { ChangeAlert } from '../../ui/ChangeAlert/index.js';
 
 function HomePage() {
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const {state, stateUpdaters} = useTodos()
   const searchParams = useParams();  
@@ -77,12 +77,10 @@ function HomePage() {
             completed={todo.completed}
             onComplete={() => completeTodo(todo.id)}
             /* updated navigation action, sending todo object as 2nd param  */ 
-            onEdit={() => navigate(
-              `/edit/${todo.id}`, 
-              {
-                state: {todo}
-              }
-            )}
+            onEdit={() => history.push({
+              pathname: `/edit/${todo.id}`,
+              state: { todo }
+            })}
             onDelete={() => deleteTodo(todo.id)}
           /> 
         )}
@@ -100,7 +98,7 @@ function HomePage() {
 
       <CreateTodoButton
         //setOpenModal={setOpenModal} 
-        onClick={() => navigate('/new')}
+        onClick={() => history.push('/new')}
       />
         
       <ChangeAlert

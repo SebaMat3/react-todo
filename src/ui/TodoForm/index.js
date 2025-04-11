@@ -1,23 +1,23 @@
 //src/ui/TodoForm/index.js
 import React from 'react';
 import './TodoForm.css';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 function TodoForm (props){
-    const navigate = useNavigate();
+    const history = useHistory();
     const [newTodoValue, setNewTodoValue] = React.useState(props.defaultTodoText || '');
 
     const onChange = (event) => {
        setNewTodoValue(event.target.value);
     }
     const onCancel = () => {
-        navigate('/');
+        history.push('/');
     }
     const onSubmit = (event) => {
         event.preventDefault();
         props.submitEvent(newTodoValue);
-        navigate('/');
+        history.push('/');
         //setOpenModal(false);
         //addTodo(newTodoValue);
      }
