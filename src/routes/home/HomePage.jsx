@@ -1,6 +1,6 @@
 //src/routes/home/HomePage.jsx
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../App.css';
 import { useTodos } from '../useTodos.js';
 import { TodoSearch } from '../../ui/TodoSearch/index.js';
@@ -20,6 +20,7 @@ function HomePage() {
   const navigate = useNavigate();
 
   const {state, stateUpdaters} = useTodos()
+  const searchParams = useParams();  
   
   const {
     error,
@@ -30,7 +31,7 @@ function HomePage() {
     //openModal,
     searchValue,
   } = state;
-
+  
   const {
     completeTodo,
     //addTodo,
@@ -38,6 +39,8 @@ function HomePage() {
     setSearchValue,
     synchronizeTodos
   } = stateUpdaters;
+  
+  const toSearch = searchParams?.value || searchValue;
 
   return (
 
@@ -62,7 +65,7 @@ function HomePage() {
         onLoading={() => <TodosLoading />}
         searchedTodos={searchedTodos}
         totalTodos={totalTodos}
-        searchText={searchValue}
+        searchText={toSearch}
         onEmptyTodos={() => <EmptyTodos />}
         onEmptySearchResults={(searchText) => <p>No results for: {searchText}</p>}
       >
